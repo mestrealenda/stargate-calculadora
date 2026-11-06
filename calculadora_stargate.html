@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Calculadora 3D Pro - @mestrealenda</title>
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=2r6Z49A3UohqpU-4MFTOr6EnZlDjA3_48bRz2oXmP-fepdV8EhwM5hjJP6_qS6KnT-4on-Dcp1X_6lT1mHW7kQvKR41ViXiIbbpcVpHKCdEpa5H3Z8inj7R6JR_yztVUWOnSxeDBp9AZ1SN-uGVtiZxzcJ0bHCkCgSVIXlCGBfek82ua07fKZOcjZ5OfqqaoPu7wiz__pC3odZMkt-M8h6Tg_ssmnWt-dj_unGLE4kyosS4i16HJ2N6oWcD0bSFwshN1Pv7pPrRTje5vB9s-of7ZF_wxqSoqb1-RVlg3fXCNmLt97XrGMSfisNu2dQktPRwQBFXUAcw5ZAMQ-bMdxQ" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jb250cmlidXRpb24udXNlcmNvbnRlbnQuZ29vZ2xlLmNvbS9kb3dubG9hZD9jPUNneGlZWEprWDNOMGIzSmhaMlVTVUJJTmNtVnpjRzl1YzJWZlpHRjBZUm9fQ2pBM01UZzNZVEZpWldVeU1XVTBNMlF5TURBd05qVm1PV0l4TXpVelpHUTROekF4WldVNFkyTTFaR1F5T1RaallUSVNDeElIRU9LN3U3cXZGeGdCJmZpbGVuYW1lPWNhbGN1bGFkb3JhX3N0YXJnYXRlLmh0bWwmb3BpPTEwMzEzNTA1MA"/><style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;600;700&display=swap');
+
+    :root {
+      --bg-dark: #090d16;
+      --card-bg: #111827;
+      --card-header: #1f2937;
+      --accent-cyan: #38bdf8;
+      --accent-green: #22c55e;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: #1e293b;
+      --border-glow: #0284c7;
+    }
+
+    * { 
+      box-sizing: border-box; 
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      margin: 0;
+      padding: 12px;
+      padding-bottom: 24px;
+    }
+
+    .header {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent-cyan);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.5px;
+      margin: 0;
+    }
+
+    .brand-sub {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      color: var(--accent-cyan);
+      margin-top: 2px;
+    }
+
+    .mascot-badge {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid var(--accent-red);
+      color: var(--accent-red);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-top: 0;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .form-group {
+      flex: 1;
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      background: #030712;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent-cyan);
+    }
+
+    .preset-btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .btn-preset {
+      background: #1f2937;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 4px;
+      font-size: 0.72rem;
+      font-family: 'Fira Code', monospace;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn-preset.active {
+      background: var(--card-header);
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      font-weight: 700;
+    }
+
+    .res-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 0.85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .res-row strong {
+      font-family: 'Fira Code', monospace;
+    }
+
+    .total-card {
+      background: #030712;
+      border: 2px solid var(--accent-green);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .total-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .total-val {
+      font-family: 'Fira Code', monospace;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent-green);
+      margin: 4px 0;
+    }
+
+    .btn-reset {
+      background: #374151;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topo -->
+  <div class="header">
+    <div>
+      <h1 class="brand-title">STARGATE 3D</h1>
+      <div class="brand-sub">CALCULADORA RÁPIDA</div>
+    </div>
+    <div class="mascot-badge">HELLBOY PRO</div>
+  </div>
+
+  <!-- Bloco 1: Material -->
+  <div class="card">
+    <div class="card-title">
+      <span>// 1. MATERIAL & PEÇA</span>
+      <button type="button" class="btn-reset" onclick="resetar()">Limpar</button>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>PESO PEÇA (G)</label>
+        <input type="number" id="weightG" value="150" oninput="calcular()">
+      </div>
+      <div class="form-group">
+        <label>VALOR ROLO (R$)</label>
+        <input type="number" id="spoolPrice" value="90" oninput="calcular()">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>PESO ROLO (G)</label>
+        <input type="number" id="spoolWeight" value="1000" oninput="calcular()">
+      </div>
+      <div class="form-group">
+        <label>PERDA (%)</label>
+        <input type="number" id="wastePct" value="5" oninput="calcular()">
+      </div>
+    </div>
+  </div>
+
+  <!-- Bloco 2: Máquina -->
+  <div class="card">
+    <div class="card-title">// 2. MÁQUINA & ENERGIA</div>
+    
+    <div class="preset-btn-group">
+      <button type="button" class="btn-preset" id="btn-a1" onclick="setPreset('a1')">Bambu A1</button>
+      <button type="button" class="btn-preset active" id="btn-x2d" onclick="setPreset('x2d')">Bambu X2D</button>
+      <button type="button" class="btn-preset" id="btn-s1" onclick="setPreset('s1')">Kobra S1</button>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>POTÊNCIA (W)</label>
+        <input type="number" id="watts" value="130" oninput="calcular()">
+      </div>
+      <div class="form-group">
+        <label>TARIFA (R$/KWH)</label>
+        <input type="number" step="0.01" id="kwhRate" value="0.85" oninput="calcular()">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>VALOR IMPRESSORA</label>
+        <input type="number" id="printerPrice" value="12000" oninput="calcular()">
+      </div>
+      <div class="form-group">
+        <label>VIDA ÚTIL (H)</label>
+        <input type="number" id="printerLifetime" value="20000" oninput="calcular()">
+      </div>
+    </div>
+  </div>
+
+  <!-- Bloco 3: Tempo e Mão de Obra -->
+  <div class="card">
+    <div class="card-title">// 3. TEMPO & MÃO DE OBRA</div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>TEMPO IMPRESSÃO (H)</label>
+        <input type="number" id="printHours" value="4" oninput="calcular()">
+      </div>
+      <div class="form-group">
+        <label>TEMPO IMPRESSÃO (MIN)</label>
+        <input type="number" id="printMins" value="30" oninput="calcular()">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>PREPARO (MIN)</label>
+        <input type="number" id="laborMins" value="15" oninput="calcular()">
+      </div>
+      <div class="form-group">
+        <label>SUA HORA (R$/H)</label>
+        <input type="number" id="laborRate" value="25" oninput="calcular()">
+      </div>
+    </div>
+  </div>
+
+  <!-- Bloco 4: Margem e Impostos -->
+  <div class="card">
+    <div class="card-title">// 4. MARGEM & VENDA</div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>MARKUP / LUCRO (%)</label>
+        <input type="number" id="markupPct" value="60" oninput="calcular()">
+      </div>
+      <div class="form-group">
+        <label>MARGEM FALHA (%)</label>
+        <input type="number" id="failPct" value="5" oninput="calcular()">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>COMISSÃO / TAXAS (%)</label>
+        <input type="number" step="0.5" id="feePct" value="0" oninput="calcular()">
+      </div>
+      <div class="form-group">
+        <label>IMPOSTOS (%)</label>
+        <input type="number" step="0.5" id="taxPct" value="0" oninput="calcular()">
+      </div>
+    </div>
+  </div>
+
+  <!-- Resultado -->
+  <div class="card">
+    <div class="card-title">// DETALHAMENTO DE CUSTOS</div>
+    
+    <div class="res-row">
+      <span>Custo Material:</span>
+      <strong id="resMat">R$ 0,00</strong>
+    </div>
+    <div class="res-row">
+      <span>Custo Energia:</span>
+      <strong id="resEnergy">R$ 0,00</strong>
+    </div>
+    <div class="res-row">
+      <span>Depreciação / Manut.:</span>
+      <strong id="resMach">R$ 0,00</strong>
+    </div>
+    <div class="res-row">
+      <span>Mão de Obra:</span>
+      <strong id="resLabor">R$ 0,00</strong>
+    </div>
+    <div class="res-row">
+      <span>Reserva Falhas:</span>
+      <strong id="resFail">R$ 0,00</strong>
+    </div>
+
+    <div class="res-row" style="border-top: 1px solid var(--border); padding-top: 8px; margin-top: 6px;">
+      <span><strong>Custo Total Produção:</strong></span>
+      <strong id="resCostTotal" style="color: var(--accent-amber);">R$ 0,00</strong>
+    </div>
+    <div class="res-row">
+      <span><strong>Lucro Líquido Real:</strong></span>
+      <strong id="resNetProfit" style="color: var(--accent-cyan);">R$ 0,00</strong>
+    </div>
+
+    <div class="total-card">
+      <div class="total-label">PREÇO SUGERIDO FINAL</div>
+      <div class="total-val" id="resFinalPrice">R$ 0,00</div>
+    </div>
+  </div>
+
+  <script>
+    const PRESETS = {
+      a1: { watts: 85, price: 4500, lifetime: 20000 },
+      x2d: { watts: 130, price: 12000, lifetime: 20000 },
+      s1: { watts: 130, price: 4500, lifetime: 20000 }
+    };
+
+    function setPreset(key) {
+      document.querySelectorAll('.btn-preset').forEach(b => b.classList.remove('active'));
+      document.getElementById('btn-' + key).classList.add('active');
+
+      const p = PRESETS[key];
+      document.getElementById('watts').value = p.watts;
+      document.getElementById('printerPrice').value = p.price;
+      document.getElementById('printerLifetime').value = p.lifetime;
+      calcular();
+    }
+
+    function resetar() {
+      document.getElementById('weightG').value = '0';
+      document.getElementById('printHours').value = '0';
+      document.getElementById('printMins').value = '0';
+      calcular();
+    }
+
+    function calcular() {
+      const weightG = parseFloat(document.getElementById('weightG').value) || 0;
+      const spoolPrice = parseFloat(document.getElementById('spoolPrice').value) || 0;
+      const spoolWeight = parseFloat(document.getElementById('spoolWeight').value) || 1000;
+      const wastePct = parseFloat(document.getElementById('wastePct').value) || 0;
+
+      const watts = parseFloat(document.getElementById('watts').value) || 0;
+      const kwhRate = parseFloat(document.getElementById('kwhRate').value) || 0;
+      const printerPrice = parseFloat(document.getElementById('printerPrice').value) || 0;
+      const printerLifetime = parseFloat(document.getElementById('printerLifetime').value) || 1;
+
+      const printHours = parseFloat(document.getElementById('printHours').value) || 0;
+      const printMins = parseFloat(document.getElementById('printMins').value) || 0;
+      const totalHours = printHours + (printMins / 60);
+
+      const laborMins = parseFloat(document.getElementById('laborMins').value) || 0;
+      const laborRate = parseFloat(document.getElementById('laborRate').value) || 0;
+
+      const markupPct = parseFloat(document.getElementById('markupPct').value) || 0;
+      const failPct = parseFloat(document.getElementById('failPct').value) || 0;
+      const feePct = parseFloat(document.getElementById('feePct').value) || 0;
+      const taxPct = parseFloat(document.getElementById('taxPct').value) || 0;
+
+      // 1. Material
+      const costPerGram = spoolWeight > 0 ? spoolPrice / spoolWeight : 0;
+      const matCost = weightG * costPerGram * (1 + (wastePct / 100));
+
+      // 2. Energia
+      const energyCost = (watts / 1000) * kwhRate * totalHours;
+
+      // 3. Máquina + Manutenção (Fixada em 0.50/h)
+      const depCost = (printerPrice / printerLifetime) * totalHours;
+      const maintCost = 0.50 * totalHours;
+      const machCost = depCost + maintCost;
+
+      // 4. Mão de Obra
+      const laborCost = (laborMins / 60) * laborRate;
+
+      // Subtotal & Falhas
+      const subtotal = matCost + energyCost + machCost + laborCost;
+      const failCost = subtotal * (failPct / 100);
+      const totalProductionCost = subtotal + failCost;
+
+      // Cálculo de Preço Final
+      const targetProfit = totalProductionCost * (markupPct / 100);
+      const totalDeductionPct = (feePct + taxPct) / 100;
+
+      let finalPrice = 0;
+      if (totalDeductionPct < 1) {
+        finalPrice = (totalProductionCost + targetProfit) / (1 - totalDeductionPct);
+      } else {
+        finalPrice = totalProductionCost * (1 + (markupPct / 100));
+      }
+
+      const netProfit = finalPrice * (1 - totalDeductionPct) - totalProductionCost;
+
+      // Exibição
+      document.getElementById('resMat').innerText = `R$ ${matCost.toFixed(2)}`;
+      document.getElementById('resEnergy').innerText = `R$ ${energyCost.toFixed(2)}`;
+      document.getElementById('resMach').innerText = `R$ ${machCost.toFixed(2)}`;
+      document.getElementById('resLabor').innerText = `R$ ${laborCost.toFixed(2)}`;
+      document.getElementById('resFail').innerText = `R$ ${failCost.toFixed(2)}`;
+      document.getElementById('resCostTotal').innerText = `R$ ${totalProductionCost.toFixed(2)}`;
+      document.getElementById('resNetProfit').innerText = `R$ ${netProfit.toFixed(2)}`;
+      document.getElementById('resFinalPrice').innerText = `R$ ${finalPrice.toFixed(2)}`;
+    }
+
+    calcular();
+  </script>
+</body>
+</html>
